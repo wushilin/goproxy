@@ -1,0 +1,11 @@
+# This is a comment
+; This is another comment
+// This is also comment
+
+# Blank lines are ignored
+
+// User & password can be separate by space, or :
+user password
+
+admin:password
+test:1231

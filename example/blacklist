@@ -1,0 +1,18 @@
+# This is a blacklist rule example comment
+# It is similar to cron tab
+# MINUTE(0-59)      HOUR(0-23)       DAY_OF_MONTH(1-31)        MONTH(1-12)       YEAR(2022+)        DAY_OF_WEEK(1-7)         Regular expression that matches host
+# tokens can be separated by one or more spaces, or one or more TABs
+# After DAY_OF_WEEK, and all spaces, the remaining string is taken as host regular expression, it can contain space, or any special character
+# To ignore case when doing host match, use (?i) prefix in regular expression
+# For numbers (MINUTE, HOUR, DAY_OF_MONTH, MONTH,YEAR,DAY_OF_WEEK), we support multiple values or ranges separated by comma(no space)
+
+# Black list all websites for all time
+* * * * * (?i).*
+
+# Blacklist youtube between 6:00pm and 8:59pm on weekday
+* 18-19,20 * * 1,2,3-5 (?)youtube
+
+# Disable *.xxx (not child safe) for all time
+
+* * * * * (?i)\.xxx
+
