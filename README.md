@@ -32,8 +32,30 @@ Usage of ./goproxy:
     	Whitelist schedule and host pattern file path (auto reload)
     	* * * * 1-2,6,7 (?i)youtube whitelists YouTube on Monday, Tuesday, Saturday and Sunday
     	 (default "whitelist")
+
+```
+# Running
+
+```
+$ goproxy -host 0.0.0.0 -port 3408 -blacklist blacklist_rules_file -whitelist whitelist_rules_file -userlist userlist_file
 ```
 
+# Running with systemd
+```
+[Unit]
+Description=goproxy Service
+After=syslog.target network.target
+
+[Service]
+User=appuser
+Group=appgroup
+Type=simple
+WorkingDirectory=/path/to/rules_files_folder
+ExecStart=/path/to/goproxy -host 0.0.0.0 -port 3408 -blacklist blacklist_rules_file -whitelist whitelist_rules_file -userlist userlist_file
+
+[Install]
+WantedBy=multi-user.target
+```
 
 # Example rules
 See examples folder
