@@ -39,6 +39,8 @@ Usage of ./goproxy:
 ```
 $ goproxy -host 0.0.0.0 -port 3408 -blacklist blacklist_rules_file -whitelist whitelist_rules_file -userlist userlist_file
 ```
+It is okay if you don't specify whitelist, blacklist and userlist, the default filename of "whitelist", "blacklist" and "userlist" will be tried.
+If they are not found, no blacklist/whitelist rules, no authentication http proxy will be ran. It is open to the world!
 
 # Running with systemd
 ```
