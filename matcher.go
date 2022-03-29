@@ -97,7 +97,7 @@ func ParseMatcher(rule string) Matcher {
 	for _, next := range tokens {
 		index := strings.Index(next, "-")
 		if index == -1 {
-			composer = composer.Or(SingleMatcher{})
+			composer = composer.Or(SingleMatcher{value: parseInt(next)})
 		} else {
 			rangeTokens := strings.Split(next, "-")
 			if len(rangeTokens) != 2 {

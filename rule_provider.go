@@ -34,12 +34,13 @@ func parseListsFromSource(dataSource io.Reader) []Rule {
 	for scanner.Scan() {
 		line := scanner.Text()
 		line = strings.TrimSpace(line)
-		if line[0] == '#' {
-			continue
-		}
 		if len(line) == 0 {
 			continue
 		}
+		if line[0] == '#' {
+			continue
+		}
+
 		minute, liner := extractToken(line)
 		hour, liner := extractToken(liner)
 		dayOfMonth, liner := extractToken(liner)
@@ -48,7 +49,8 @@ func parseListsFromSource(dataSource io.Reader) []Rule {
 		if !checkAllArgs(minute, hour, dayOfMonth, month, dayOfWeek, pattern) {
 			log.Fatalf("Invalid rule line %s", line)
 		}
-		result = append(result, Rule{
+
+		var newRule = Rule{
 			minute:           minute,
 			hour:             hour,
 			dayOfMonth:       dayOfMonth,
@@ -56,7 +58,9 @@ func parseListsFromSource(dataSource io.Reader) []Rule {
 			dayOfWeek:        dayOfWeek,
 			hostPattern:      pattern,
 			hostPatternRegex: regexp.MustCompile(pattern),
-		})
+		}
+		log.Printf("Loaded new rule %v", newRule)
+		result = append(result, newRule)
 	}
 	return result
 }
